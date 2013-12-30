@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name          = 'fluent-plugin-referer-parser'
-  gem.version       = '0.0.2'
+  gem.version       = '0.0.3'
   gem.authors       = ['TAGOMORI Satoshi', 'HARUYAMA Seigo']
   gem.email         = ['tagomoris@gmail.com', 'haruyama@unixuser.org']
   gem.description   = %q{parsing by referer-parser. See: https://github.com/snowplow/referer-parser}

@@ -10,7 +10,6 @@ class Fluent::RefererParserOutput < Fluent::Output
 
   config_param :key_name, :string
 
-  config_param :merge_referer_info,  :bool,   default: false
   config_param :out_key_known,       :string, default: 'referer_known'
   config_param :out_key_referer,     :string, default: 'referer_referer'
   config_param :out_key_search_term, :string, default: 'referer_search_term'
@@ -72,7 +71,7 @@ class Fluent::RefererParserOutput < Fluent::Output
         parameters = CGI.parse(referer.uri.query)
         input_encoding = parameters['ie'][0] || parameters['ei'][0]
         begin
-          search_term = search_term.force_encoding(input_encoding).encode('utf-8') if input_encoding && /utf-?8/i !~ input_encoding
+          search_term = search_term.force_encoding(input_encoding).encode('utf-8') if input_encoding && /\Autf-?8\z/i !~ input_encoding
         rescue
           $log.error('invalid referer: ' + referer.uri.to_s)
         end
