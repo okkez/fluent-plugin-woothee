@@ -6,4 +6,7 @@ CyclomaticComplexity:
 
 MethodLength:
   CountComments: false # count full line comments?
-  Max: 20
+  Max: 50
+
+GlobalVars:
+  Enabled: false
