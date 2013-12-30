@@ -1,0 +1,9 @@
+LineLength:
+  Enabled: false
+
+CyclomaticComplexity:
+  Enabled: false
+
+MethodLength:
+  CountComments: false # count full line comments?
+  Max: 20
