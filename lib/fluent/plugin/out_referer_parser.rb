@@ -1,4 +1,4 @@
-require 'ostruct'
+require 'referer-parser'
 
 # referer parser output
 class Fluent::RefererParserOutput < Fluent::Output
@@ -14,12 +14,11 @@ class Fluent::RefererParserOutput < Fluent::Output
   config_param :out_key_referer,     :string, default: 'referer_referer'
   config_param :out_key_search_term, :string, default: 'referer_search_term'
 
-  PARSE_ERROR_STRUCT = OpenStruct.new(known?: false)
+  REFERERS = RefererParser::Referers.load_referers_from_yaml(RefererParser::Referers.get_yaml_file)
 
   def initialize
     super
     require 'cgi'
-    require 'referer-parser'
   end
 
   def configure(conf)
@@ -62,11 +61,11 @@ class Fluent::RefererParserOutput < Fluent::Output
     es.each do |time, record|
       referer =
         begin
-          RefererParser::Referer.new(record[@key_name])
+          RefererParser::Referer.new(record[@key_name], nil, REFERERS)
         rescue
-          PARSE_ERROR_STRUCT
+          nil
         end
-      if referer.known?
+      if referer && referer.known?
         search_term = referer.search_term
         parameters = CGI.parse(referer.uri.query)
         input_encoding = parameters['ie'][0] || parameters['ei'][0]

@@ -2,7 +2,7 @@
 
 Gem::Specification.new do |gem|
   gem.name          = 'fluent-plugin-referer-parser'
-  gem.version       = '0.0.3'
+  gem.version       = '0.0.4'
   gem.authors       = ['TAGOMORI Satoshi', 'HARUYAMA Seigo']
   gem.email         = ['tagomoris@gmail.com', 'haruyama@unixuser.org']
   gem.description   = %q{parsing by referer-parser. See: https://github.com/snowplow/referer-parser}
@@ -17,5 +17,5 @@ Gem::Specification.new do |gem|
 
   gem.add_development_dependency 'rake'
   gem.add_runtime_dependency 'fluentd'
-  gem.add_runtime_dependency 'referer-parser', '>= 0.2.0'
+  gem.add_runtime_dependency 'referer-parser'
 end

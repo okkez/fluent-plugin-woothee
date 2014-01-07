@@ -1,6 +1,6 @@
 # fluent-plugin-referer-parser
 
-## WootheeOutput
+## RefererParserOutput
 
 'fluent-plugin-referer-parser' is a Fluentd plugin to parse Referer strings, based on [tagomoris/fluent-plugin-woothee](https://github.com/tagomoris/fluent-plugin-woothee).
 'fluent-plugin-referer-parser' uses [snowplow/referer-parser](https://github.com/snowplow/referer-parser).
