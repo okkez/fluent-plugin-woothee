@@ -14,7 +14,7 @@ class Fluent::RefererParserOutput < Fluent::Output
   config_param :out_key_referer,     :string, default: 'referer_referer'
   config_param :out_key_search_term, :string, default: 'referer_search_term'
 
-  REFERERS = RefererParser::Referers.load_referers_from_yaml(RefererParser::Referers.get_yaml_file)
+  REFERER = RefererParser::Referer.new('http://example.org/')
 
   def initialize
     super
@@ -59,24 +59,24 @@ class Fluent::RefererParserOutput < Fluent::Output
   def emit(tag, es, chain)
     tag = tag_mangle(tag)
     es.each do |time, record|
-      referer =
-        begin
-          RefererParser::Referer.new(record[@key_name], nil, REFERERS)
-        rescue
-          nil
-        end
-      if referer && referer.known?
-        search_term = referer.search_term
-        parameters = CGI.parse(referer.uri.query)
+      valid = true
+      begin
+        REFERER.parse(record[@key_name])
+      rescue
+        valid = false
+      end
+      if valid && REFERER.known?
+        search_term = REFERER.search_term
+        parameters = CGI.parse(REFERER.uri.query)
         input_encoding = parameters['ie'][0] || parameters['ei'][0]
         begin
           search_term = search_term.force_encoding(input_encoding).encode('utf-8') if input_encoding && /\Autf-?8\z/i !~ input_encoding
         rescue
-          $log.error('invalid referer: ' + referer.uri.to_s)
+          $log.error('invalid referer: ' + REFERER.uri.to_s)
         end
         record.merge!(
           @out_key_known       => true,
-          @out_key_referer     => referer.referer,
+          @out_key_referer     => REFERER.referer,
           @out_key_search_term => search_term,
         )
       else
