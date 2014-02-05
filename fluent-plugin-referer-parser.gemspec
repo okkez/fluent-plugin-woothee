@@ -2,9 +2,9 @@
 
 Gem::Specification.new do |gem|
   gem.name          = 'fluent-plugin-referer-parser'
-  gem.version       = '0.0.5'
+  gem.version       = '0.0.6'
   gem.authors       = ['TAGOMORI Satoshi', 'HARUYAMA Seigo']
-  gem.email         = ['tagomoris@gmail.com', 'haruyama@unixuser.org']
+  gem.email         = ['haruyama@unixuser.org']
   gem.description   = %q{parsing by referer-parser. See: https://github.com/snowplow/referer-parser}
   gem.summary       = %q{Fluentd plugin to parse UserAgent strings}
   gem.homepage      = 'https://github.com/haruyama/fluent-plugin-referer-parser'
