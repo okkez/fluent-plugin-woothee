@@ -1,4 +1,4 @@
-# fluent-plugin-referer-parser
+# fluent-plugin-referer-parser, a plugin for [Fluentd](http://fluentd.org)
 
 ## RefererParserOutput
 
