@@ -3,14 +3,14 @@ require 'helper'
 # RefererParserOutput test
 class Fluent::RefererParserOutputTest < Test::Unit::TestCase
   # through & merge
-  CONFIG1 = %[
+  CONFIG1 = %(
 type referer_parser
 key_name referer
 remove_prefix test
 add_prefix merged
-]
+)
 
-  CONFIG2 = %[
+  CONFIG2 = %(
 type referer_parser
 key_name ref
 remove_prefix test
@@ -19,16 +19,16 @@ out_key_known        ref_known
 out_key_referer      ref_referer
 out_key_host         ref_host
 out_key_search_term  ref_search_term
-]
+)
 
-  CONFIG3 = %[
+  CONFIG3 = %(
 type referer_parser
 key_name ref
 remove_prefix test
 add_prefix merged
 referers_yaml test/data/referers.yaml
 encodings_yaml test/data/encodings.yaml
-]
+)
 
   def create_driver(conf = CONFIG1, tag = 'test')
     Fluent::Test::OutputTestDriver.new(Fluent::RefererParserOutput, tag).configure(conf)
@@ -84,8 +84,8 @@ encodings_yaml test/data/encodings.yaml
     m = emits[0][2]
     assert_equal 0,         m['value']
     assert_equal false,     m['referer_known']
-    assert_nil   m['referer_referer']
-    assert_nil   m['referer_search_term']
+    assert_nil m['referer_referer']
+    assert_nil m['referer_search_term']
     assert_equal 2,         m.keys.size
 
     m = emits[1][2]
@@ -99,8 +99,8 @@ encodings_yaml test/data/encodings.yaml
     m = emits[2][2]
     assert_equal 2,         m['value']
     assert_equal false,     m['referer_known']
-    assert_nil   m['referer_referer']
-    assert_nil   m['referer_search_term']
+    assert_nil m['referer_referer']
+    assert_nil m['referer_search_term']
     assert_equal 3,         m.keys.size
 
     m = emits[3][2]
@@ -146,8 +146,8 @@ encodings_yaml test/data/encodings.yaml
     m = emits[0][2]
     assert_equal 0,         m['value']
     assert_equal false,     m['ref_known']
-    assert_nil   m['ref_referer']
-    assert_nil   m['ref_search_term']
+    assert_nil m['ref_referer']
+    assert_nil m['ref_search_term']
     assert_equal 2,         m.keys.size
 
     m = emits[1][2]
@@ -161,9 +161,9 @@ encodings_yaml test/data/encodings.yaml
     m = emits[2][2]
     assert_equal 2,         m['value']
     assert_equal false,     m['ref_known']
-    assert_nil   m['ref_referer']
-    assert_nil   m['ref_host']
-    assert_nil   m['ref_search_term']
+    assert_nil m['ref_referer']
+    assert_nil m['ref_host']
+    assert_nil m['ref_search_term']
 
     m = emits[3][2]
     assert_equal 3,                m['value']
@@ -191,8 +191,8 @@ encodings_yaml test/data/encodings.yaml
     m = emits[0][2]
     assert_equal 0,     m['value']
     assert_equal false, m['referer_known']
-    assert_nil          m['referer_referer']
-    assert_nil          m['referer_search_term']
+    assert_nil m['referer_referer']
+    assert_nil m['referer_search_term']
     assert_equal 2,     m.keys.size
 
     m = emits[1][2]

@@ -88,7 +88,7 @@ class Fluent::RefererParserOutput < Fluent::Output
           @out_key_known       => true,
           @out_key_referer     => @referer_parser.referer,
           @out_key_host        => host,
-          @out_key_search_term => search_term,
+          @out_key_search_term => search_term
         )
       else
         record.merge!(@out_key_known => false)

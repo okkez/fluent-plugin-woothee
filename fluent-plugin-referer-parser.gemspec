@@ -1,18 +1,19 @@
 # -*- encoding: utf-8 -*-
+require 'English'
 
 Gem::Specification.new do |gem|
   gem.name          = 'fluent-plugin-referer-parser'
-  gem.version       = '0.0.6'
+  gem.version       = '0.0.7'
   gem.authors       = ['TAGOMORI Satoshi', 'HARUYAMA Seigo']
   gem.email         = ['haruyama@unixuser.org']
-  gem.description   = %q{parsing by referer-parser. See: https://github.com/snowplow/referer-parser}
-  gem.summary       = %q{Fluentd plugin to parse UserAgent strings}
+  gem.description   = %q(parsing by referer-parser. See: https://github.com/snowplow/referer-parser)
+  gem.summary       = %q(Fluentd plugin to parse UserAgent strings)
   gem.homepage      = 'https://github.com/haruyama/fluent-plugin-referer-parser'
   gem.license       = 'APLv2'
 
-  gem.files         = `git ls-files`.split($\)
-  gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
-  gem.test_files    = gem.files.grep(%r{^(test|spec|features)/})
+  gem.files         = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
+  gem.executables   = gem.files.grep(/\Abin\//).map { |f| File.basename(f) }
+  gem.test_files    = gem.files.grep(/\A(test|spec|features)\//)
   gem.require_paths = ['lib']
 
   gem.add_development_dependency 'rake'
