@@ -30,6 +30,10 @@ referers_yaml test/data/referers.yaml
 encodings_yaml test/data/encodings.yaml
 )
 
+  def setup
+    Fluent::Test.setup
+  end
+
   def create_driver(conf = CONFIG1, tag = 'test')
     Fluent::Test::OutputTestDriver.new(Fluent::RefererParserOutput, tag).configure(conf)
   end
