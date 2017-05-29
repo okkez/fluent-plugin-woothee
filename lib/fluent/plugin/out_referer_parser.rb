@@ -93,7 +93,7 @@ class Fluent::RefererParserOutput < Fluent::Output
       else
         record.merge!(@out_key_known => false)
       end
-      Fluent::Engine.emit(tag, time, record)
+      router.emit(tag, time, record)
     end
     chain.next
   end
