@@ -11,7 +11,7 @@
 To add referer-parser result into matched messages:
 
     <match input.**>
-      type referer_parser
+      @type referer_parser
       key_name referer
       remove_prefix input
       add_prefix merged
@@ -20,7 +20,7 @@ To add referer-parser result into matched messages:
 Output messages with tag 'merged.**' has 'referer_known', 'referer_referer' and 'referer_search_term' attributes. If you want to change attribute names, write configurations as below:
 
     <match input.**>
-      type referer_parser
+      @type referer_parser
       key_name ref
       remove_prefix input
       add_prefix merged
