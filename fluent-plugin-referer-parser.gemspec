@@ -9,7 +9,7 @@ Gem::Specification.new do |gem|
   gem.description   = %q(parsing by referer-parser. See: https://github.com/snowplow/referer-parser)
   gem.summary       = %q(Fluentd plugin to parse UserAgent strings)
   gem.homepage      = 'https://github.com/haruyama/fluent-plugin-referer-parser'
-  gem.license       = 'APLv2'
+  gem.license       = 'Apache-2.0'
 
   gem.files         = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
   gem.executables   = gem.files.grep(/\Abin\//).map { |f| File.basename(f) }
